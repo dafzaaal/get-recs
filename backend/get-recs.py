@@ -40,7 +40,7 @@ def search_yt(search) -> list:
             video_url = f"https://www.youtube.com/watch?v={video_id}"
             res.append({'title': title, 'description': desc, 'thumbnail_url': thumbnail, 'Video URL': video_url})
             
-    return res[:3]
+    return res
 
 
 
