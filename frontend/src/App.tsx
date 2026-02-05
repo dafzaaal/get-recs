@@ -1,25 +1,27 @@
 import './App.css'
+import GetData from './Query'
 import { motion } from "framer-motion"
 import DotGrid from './DotGrid'
 import SplitText from './SplitText'
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 
 
 
 export function Landing() {
+
     const [query, setQuery] = useState('')
+    const navigate = useNavigate()
 
   function handleInputStateChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
       setQuery(event.target.value)
       console.log(query)
   }
 
-  async function queryAPI() {
-    const response = fetch('http://localhost:3000')
-    const data = await response
-    console.log(data.json())
+  const handleButtonClick = () => {
+    navigate('/learning', {state: {data: query}})
   }
+
 
   const handleAnimationComplete = () => {
     console.log('All letters have animated!');
@@ -55,7 +57,7 @@ export function Landing() {
               initial={false}
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.35 }}
-              onClick={queryAPI}
+              onClick={handleButtonClick}
             >
               Start learning...</motion.button>
       </div>
@@ -84,6 +86,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Landing/>}/>
+        <Route path='/learning' element={<GetData/>}/>
       </Routes>
     </BrowserRouter>
   )
