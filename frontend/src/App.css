@@ -61,3 +61,7 @@
 #img-area {
   width: 50%;
 }
+
+#my-header:hover {
+  color: grey;
+}

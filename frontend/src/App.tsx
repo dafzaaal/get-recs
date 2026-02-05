@@ -38,7 +38,7 @@ export default function App() {
             onLetterAnimationComplete={handleAnimationComplete}
           />
             <p className='text-black w-2/3 text-center text-xl font-roboto'>
-              Welcome to <b>Get Recs!</b>, this is a dummy application leveraging the YouTube API and Gemini to take a user 
+              Welcome to <b>Get Recs!</b> This is a dummy application leveraging the YouTube API and Gemini to take a user 
               prompt and generate an AI response as well as reccommend a couple videos regarding the topic for the user.
               The goal of this applicatin is to help me understand hosting a web-application on an nginx server as
               well as learn the basics of integrating regular Playwright test cases into a GitHub Actions CI/CD pipeline.
