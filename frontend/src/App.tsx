@@ -3,17 +3,22 @@ import { motion } from "framer-motion"
 import DotGrid from './DotGrid'
 import SplitText from './SplitText'
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 
 
 
-
-export default function App() {
-
-  const [query, setQuery] = useState('')
+export function Landing() {
+    const [query, setQuery] = useState('')
 
   function handleInputStateChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
       setQuery(event.target.value)
       console.log(query)
+  }
+
+  async function queryAPI() {
+    const response = fetch('http://localhost:3000')
+    const data = await response
+    console.log(data.json())
   }
 
   const handleAnimationComplete = () => {
@@ -50,7 +55,7 @@ export default function App() {
               initial={false}
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.35 }}
-            
+              onClick={queryAPI}
             >
               Start learning...</motion.button>
       </div>
@@ -69,4 +74,18 @@ export default function App() {
       </div>
     </motion.div>
   )
+}
+
+
+
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Landing/>}/>
+      </Routes>
+    </BrowserRouter>
+  )
+
 }
