@@ -8,9 +8,12 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 
 
 
+
+
 export function Landing() {
 
-    const [query, setQuery] = useState('')
+    const [ query, setQuery ] = useState('')
+
     const navigate = useNavigate()
 
   function handleInputStateChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -53,7 +56,7 @@ export function Landing() {
             <label className='text-black font-roboto mt-10 mb-10 font-medium text-lg'>Enter something neat you'd like to learn more about below!</label>
             <textarea placeholder=' Type away...' className='text-white bg-black rounded-lg w-2/3 h-1/3' onChange={handleInputStateChange}></textarea>
             <motion.button 
-              className='shadow-2xl mt-5 bg-amber-100'
+              className='shadow-2xl mt-5 hover:bg-white'
               initial={false}
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.35 }}

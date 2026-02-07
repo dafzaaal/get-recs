@@ -1,3 +1,0 @@
-dotenv
-google-genai
-google-api-python-client

@@ -3,6 +3,8 @@
 
 @theme {
   --font-roboto: "Roboto", sans-serif; 
+  --color-pastel-green: #C9E4DE;
+  --color-pastel-blue: #C6DEF1;
 }
 
 #root {
