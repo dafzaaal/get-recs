@@ -22,7 +22,16 @@ export default function GetData() {
             })
         });
         const data = await response.text()
-        setData(data)
+        if (userData.state.data == "") {
+            setData("Seems you forgot to ask a question, don't worry, hit the back button and try again...")
+        }
+        else if (data.includes("Error")) {
+            setData("Uh oh, seems like we're experiencing some issues contacting Gemini, try again later.")
+        }
+        else {
+            setData(data)
+        }
+        
     }
 
     useEffect(() => {
@@ -37,20 +46,12 @@ export default function GetData() {
                 <div className='w-1/1'>
                     <h1 className='pb-5'>Gemini Says...</h1>
                     <div id='ai-response' className='bg-white text-black h-1/2 p-7 rounded-lg font-medium font-consolas text-lg'>
-                        {data ? (
+                        {data && 
                             <Typewriter options={{
                                 strings: data,
                                 autoStart: true,
                                 delay: 90
                             }} />
-                        ) : (
-                            <Typewriter options={{
-                                strings: "Oops, think you forgot to type something in the prompt, go back and write a question!",
-                                autoStart: true,
-                                delay: 90
-                            }} />
-                        )
-
                         }       
                     </div>
                     <button className='text-black border-2 border-black bg-white hover:text-white hover:bg-black hover:border-white hover:border pt-2 pb-2 pl-7 pr-7 font-consolas font-light mt-5 rounded-md' onClick={() => {navigator('/')}}>Back</button>
