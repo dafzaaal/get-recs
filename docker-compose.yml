@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build: ./frontend
+    expose:
+      - 5173
+  backend:
+    build: ./backend
+    expose:
+      - 3000

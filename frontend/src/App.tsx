@@ -47,22 +47,19 @@ export function Landing() {
             textAlign="center"
             onLetterAnimationComplete={handleAnimationComplete}
           />
-            <p className='text-black w-2/3 text-center text-xl font-roboto'>
+            <p className='text-black w-2/3 text-center text-xl font-consolas'>
               Welcome to <b>Get Recs!</b> This is a dummy application leveraging the YouTube API and Gemini to take a user 
               prompt and generate an AI response as well as reccommend a couple videos regarding the topic for the user.
               The goal of this application is to help me understand hosting a web-application on an nginx server as
               well as learn the basics of integrating regular Playwright test cases into a GitHub Actions CI/CD pipeline.
             </p>
-            <label className='text-black font-roboto mt-10 mb-10 font-medium text-lg'>Enter something neat you'd like to learn more about below!</label>
-            <textarea placeholder=' Type away...' className='text-white bg-black rounded-lg w-2/3 h-1/3' onChange={handleInputStateChange}></textarea>
-            <motion.button 
-              className='shadow-2xl mt-5 hover:bg-white'
-              initial={false}
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.35 }}
+            <label className='text-black font-consolas mt-10 mb-10 font-medium text-lg'>Enter something neat you'd like to learn more about below!</label>
+            <textarea placeholder=' Type away...' className='text-white bg-black rounded-lg w-2/3 h-1/3 p-3' onChange={handleInputStateChange}></textarea>
+            <button
+              className='text-black border-2 border-black bg-white hover:text-white hover:bg-black pt-3 pb-3 pl-7 pr-7 font-consolas font-light mt-5 rounded-md '
               onClick={handleButtonClick}
             >
-              Start learning...</motion.button>
+              Start learning...</button>
       </div>
       <div id='img-area' className='w-full h-screen'>
        <DotGrid

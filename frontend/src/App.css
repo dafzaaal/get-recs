@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-roboto: "Roboto", sans-serif; 
+  --font-consolas: "Inconsolata", "sans-serif";
   --color-pastel-green: #C9E4DE;
   --color-pastel-blue: #C6DEF1;
 }
@@ -34,6 +36,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#ai-response {
+  width: 70%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -34,6 +34,11 @@ app.post('/',  async (c) => {
   }
 });
 
+
+app.post('/v1/youtube', async (c) => {
+  true
+});
+
 serve({
   fetch: app.fetch,
   port: 3000
