@@ -1,5 +1,5 @@
 import './App.css'
-import { useRef, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import Typewriter from 'typewriter-effect'
 
@@ -10,13 +10,19 @@ import Typewriter from 'typewriter-effect'
 export default function GetData() {
 
     const userData = useLocation();
-    const [data, setData] = useState(null);
+    const [data, setData] = useState("");
+    const boundaries = ". Keep the answer short and to the point"
 
      async function queryAPI() {
-        const response = await fetch('http://localhost:3000')
-        const jsonData = await response.json()
-        console.log(jsonData)
-        setData(jsonData)
+        const response = await fetch('http://localhost:3000', {
+            method: 'POST',
+            body: JSON.stringify({
+                user_prompt: userData.state.data + boundaries
+            })
+        });
+        const data = await response.text()
+        console.log(`AI Said: ${data}`)
+        setData(data)
     }
 
     useEffect(() => {
@@ -35,7 +41,7 @@ export default function GetData() {
                             autoStart: true,
                             delay: 90
                         }} />
-                    )};
+                    )}
                 </div>
                 
             </div>
