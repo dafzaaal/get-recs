@@ -64,7 +64,7 @@ export default function GetData() {
                             
                         }       
                     </div>
-                    <button className='text-black border-2 border-black bg-white hover:text-white hover:bg-black hover:border-white hover:border pt-2 pb-2 pl-7 pr-7 font-consolas font-light mt-5 rounded-md' onClick={() => {navigator('/')}}>Back</button>
+                    <button className='text-black border-2 border-black bg-white hover:text-white hover:bg-black hover:cursor-pointer hover:border-white hover:border pt-2 pb-2 pl-7 pr-7 font-consolas font-light mt-5 rounded-md' onClick={() => {navigator('/')}}>Back</button>
 
                 </div>
                 
