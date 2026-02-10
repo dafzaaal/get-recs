@@ -9,10 +9,11 @@ import { showRoutes } from 'hono/dev';
 const app = new Hono();
 
 app.use('/', cors());
+app.use('/youtube', cors());
 
 dotenv.config()
 
-function parseData(data) {
+function parseData(data: any) {
     let res = []
     for(let i = 0; i < data.length; i++) {
         const item = data[i];
@@ -82,7 +83,6 @@ app.post('/youtube', async (c) => {
   try {
     const data = await queryYouTube(searchReq)
     const res = parseData(data);
-    console.log(res);
     return c.json(res);
   } 
   catch (error) {
