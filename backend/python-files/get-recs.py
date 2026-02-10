@@ -3,6 +3,7 @@ from google import genai
 from dotenv import load_dotenv
 import googleapiclient.discovery
 
+
 load_dotenv()
 
 def query_gemini(prompt) -> str:

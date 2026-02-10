@@ -4,13 +4,11 @@ import { useLocation } from "react-router-dom"
 import Typewriter from 'typewriter-effect'
 import { useNavigate } from 'react-router-dom'
 
-
-
-
 export default function GetData() {
 
     const userData = useLocation();
     const [data, setData] = useState<any | null>(null);
+    const [recs, setRecs] = useState<any | null>(null);
     const boundaries = ". Keep the answer short and to the point"
     const navigator = useNavigate()
 
@@ -34,9 +32,22 @@ export default function GetData() {
         
     }
 
+
+    async function queryYouTube() {
+        const response = await fetch('http://localhost:3000/youtube', {
+            method: 'POST',
+            body: JSON.stringify({
+                search: userData.state.data
+            })
+        });
+        const data = await response.text();
+        setRecs(data)
+    }
+
     useEffect(() => {
         if(userData.state.data != "") {
             queryAPI()
+            // query the YouTube API here as well if the user prompt isn't empty
         }
     }, [])
 
