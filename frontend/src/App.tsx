@@ -56,7 +56,7 @@ export function Landing() {
             <label className='text-black font-consolas mt-10 mb-10 font-medium text-lg'>Enter something neat you'd like to learn more about below!</label>
             <textarea placeholder=' Type away...' className='text-white bg-black rounded-lg w-2/3 h-1/3 p-3' onChange={handleInputStateChange}></textarea>
             <button
-              className='text-black border-2 border-black bg-white hover:text-white hover:bg-black hover:cursor-pointer pt-3 pb-3 pl-7 pr-7 font-consolas font-light mt-5 rounded-md '
+              className='text-white border-2 border-black bg-black hover:text-black hover:bg-white hover:cursor-pointer pt-3 pb-3 pl-7 pr-7 font-consolas font-light mt-5 rounded-md '
               onClick={handleButtonClick}
             >
               Start learning...</button>
