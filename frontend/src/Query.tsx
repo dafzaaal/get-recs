@@ -26,26 +26,23 @@ export default function GetData() {
     }
 
     function generateVideo() {
+        let videos = [];
         for(let i = 0; i < 3; i++) {
             let currRec = recs[i];
-            let title: string = currRec['title'];
-            let desc: string = currRec["desc"];
-            let channelName: string = currRec["channelName"];
-            let thumbnailURL: string = currRec["thumbnail"];
-            let videoId: string = currRec["videoId"];
-            return (
+            videos.push(
                 <div className='border-2 border-black'>
-                    <img src={thumbnailURL}></img>
+                    <img src={currRec["thumbnail"]}></img>
                     <div>
-                        <a href={videoURL + videoId} target='_blank'>
-                            {title}
+                        <a href={videoURL + currRec["videoId"]} target='_blank'>
+                            {currRec["title"]}
                         </a>
-                        {desc}
-                        {channelName}
+                        {currRec["desc"]}
+                        {currRec["channelName"]}
                     </div>
                 </div>
             )
         }
+        return videos
     }
 
 
@@ -87,7 +84,6 @@ export default function GetData() {
     }, [])
 
 
-
     return (
         <div className="flex flex-row w-screen h-screen">
             <div id="gemini_output" className="flex h-screen w-screen text-left bg-black font-bold text-xl p-10">
@@ -109,11 +105,22 @@ export default function GetData() {
             </div>
             <div id="yotube_recs" className="h-screen w-screen bg-white text-black text-left font-roboto font-bold text-2xl p-10">
                 <h1>Recommendations</h1>
-                <div id='video-containers' className='border-2 border-black'>
-                    <div>
-                        {recs &&
-                            generateVideo()
-                        }
+                <div id='video-containers' className='mt-5'>
+                    <div className='w-[92%]'>
+                        <div className='flex flex-row border rounded-md border-black p-3 font-consolas font-medium text-lg hover:shadow-2xl'>
+                            <img src='https://i.ytimg.com/vi/joVwwQlu134/mqdefault.jpg' className='w-[250px] h-[160px]'></img>
+                            <div className='ml-5'>
+                                <a href='https://youtube.com' target='_blank' className='hover:cursor-pointer'>
+                                    How AI is taking over everywhere?
+                                </a>
+                                <p className='font-light mt-2'>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.
+                                </p>
+                                <p className='font-bold mt-2'>
+                                    Channel Name
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
