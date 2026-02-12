@@ -38,7 +38,7 @@ export default function GetData() {
 
 
     async function queryAPI() {
-    const response = await fetch('http://localhost:3000', {
+    const response = await fetch('http://localhost:3000/gemini', {
         method: 'POST',
         body: JSON.stringify({
             user_prompt: userData.state.data + boundaries
@@ -69,10 +69,10 @@ export default function GetData() {
 
     useEffect(() => {
         if(userData.state.data != "") {
-            // queryAPI()
-            queryYouTube()
+            queryAPI();
+            queryYouTube();
         }
-    }, [])
+    }, []);
 
 
     return (
@@ -80,14 +80,13 @@ export default function GetData() {
             <div id="gemini_output" className="flex h-screen w-screen text-left bg-black font-bold text-xl p-10">
                 <div className='w-1/1'>
                     <h1 className='pb-5'>Gemini Says...</h1>
-                    <div id='ai-response' className='bg-white text-black h-1/2 p-7 rounded-lg font-medium font-consolas text-lg'>
+                    <div id='ai-response' className='bg-white text-black h-1/2 p-7 rounded-lg font-medium font-consolas text-lg overflow-y-auto'>
                         {data &&
                             TypeWriter(data)
                         }
                         {!data &&
                             TypeWriter(errorMessage)
                         }
-                            
                     </div>
                     <button className='text-black border-2 border-black bg-white hover:text-white hover:bg-black hover:cursor-pointer hover:border-white hover:border pt-2 pb-2 pl-7 pr-7 font-consolas font-light mt-5 rounded-md' onClick={() => {navigator('/')}}>Back</button>
 

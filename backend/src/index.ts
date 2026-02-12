@@ -8,7 +8,7 @@ import { showRoutes } from 'hono/dev';
 
 const app = new Hono();
 
-app.use('/', cors());
+app.use('/gemini', cors());
 app.use('/youtube', cors());
 
 dotenv.config()
@@ -62,7 +62,7 @@ async function queryYouTube(searchReq: string) {
     return response
 }
 
-app.post('/',  async (c) => {
+app.post('/gemini',  async (c) => {
   console.log("Sending prompt to Gemini...")
   const body = await c.req.json()
   const prompt: string = body['user_prompt']
