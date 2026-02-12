@@ -3,18 +3,17 @@ import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import Typewriter from 'typewriter-effect'
 import { useNavigate } from 'react-router-dom'
+import VideoComponent from './Video'
 
 export default function GetData() {
 
     const userData = useLocation();
     const [data, setData] = useState<any | null>(null);
-    const [recs, setRecs] = useState<any | null>(null);
+    const [videoData, setVideoData] = useState<any | null>(null);
     const boundaries: string = ". Keep the answer short and to the point"
     const navigator = useNavigate()
     const errorMessage: string = "Uh oh, seems you forgot to ask a question, that's fine, let's go back and try again..."
-    const videoURL: string = "https://www.youtube.com/watch?v="
-
-
+   
     function TypeWriter(message: string) {
         return (
             <Typewriter options={{
@@ -25,24 +24,16 @@ export default function GetData() {
         )
     }
 
-    function generateVideo() {
-        let videos = [];
+    function createVideoComponents(recs: any) {
+        const videosComponents = [];
+        const videoURL: string = "https://www.youtube.com/watch?v="
         for(let i = 0; i < 3; i++) {
             let currRec = recs[i];
-            videos.push(
-                <div className='border-2 border-black'>
-                    <img src={currRec["thumbnail"]}></img>
-                    <div>
-                        <a href={videoURL + currRec["videoId"]} target='_blank'>
-                            {currRec["title"]}
-                        </a>
-                        {currRec["desc"]}
-                        {currRec["channelName"]}
-                    </div>
-                </div>
+            videosComponents.push(
+                <VideoComponent key={i} rec={currRec} videoURL={videoURL}/>
             )
         }
-        return videos
+        return videosComponents;
     }
 
 
@@ -71,9 +62,9 @@ export default function GetData() {
                 search: userData.state.data
             })
         });
-        const videoData = await response.text();
-        setRecs(videoData);
-        console.log(videoData);
+        const videoAPIData = await response.json();
+        const components = createVideoComponents(videoAPIData);
+        setVideoData(components);
     }
 
     useEffect(() => {
@@ -107,20 +98,7 @@ export default function GetData() {
                 <h1>Recommendations</h1>
                 <div id='video-containers' className='mt-5'>
                     <div className='w-[92%]'>
-                        <div className='flex flex-row border rounded-md border-black p-3 font-consolas font-medium text-lg hover:shadow-2xl'>
-                            <img src='https://i.ytimg.com/vi/joVwwQlu134/mqdefault.jpg' className='w-[250px] h-[160px]'></img>
-                            <div className='ml-5'>
-                                <a href='https://youtube.com' target='_blank' className='hover:cursor-pointer'>
-                                    How AI is taking over everywhere?
-                                </a>
-                                <p className='font-light mt-2'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.
-                                </p>
-                                <p className='font-bold mt-2'>
-                                    Channel Name
-                                </p>
-                            </div>
-                        </div>
+                        {videoData}
                     </div>
                 </div>
             </div>
