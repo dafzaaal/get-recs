@@ -14,7 +14,7 @@ jobs:
               working-directory: ./frontend
               run: |
                 npm ci
-                npm run dev
+                npm run build
             - name: Navigate to backend folder and download dependencies and run Hono backend
               working-directory: ./backend
               run: |
