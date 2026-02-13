@@ -1,5 +1,5 @@
 name: Automated UI Playwright Tests
-on: workflow_dispatch
+on: [ push ]
 jobs:
     test:
         runs-on: ubuntu-latest
