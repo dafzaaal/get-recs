@@ -10,11 +10,6 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: lts/*
-            - name: Check for cached dependencies
-              uses: actions/cache@v3
-              with:
-                path: ~/.npm
-                key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
             - name: Install dependencies and run server
               run: |
                 npm ci
