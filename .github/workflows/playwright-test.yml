@@ -10,8 +10,12 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: lts/*
-            - name: Install frontend dependencies and run frontend server
-              working-directory: ./frontend
+            - name: Check for cached dependencies
+              uses: actions/cache@v3
+              with:
+                path: ~/.npm
+                key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Install dependencies and run server
               run: |
                 npm ci
                 npm run dev &
@@ -24,6 +28,7 @@ jobs:
               working-directory: ./test-suite
               run: npm ci
             - name: Install Playwright Browsers
+              working-directory: ./backend
               run: |
                 npx playwright install --with-deps
                 npx playwright test
