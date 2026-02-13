@@ -10,7 +10,13 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: lts/*
-            - name: Install dependecies
+            - name: Run frontend server
+              working-directory: ./frontend
+              run: npm ci && npm run dev
+            - name: Run backend server
+              working-directory: ./backend
+              run: npm ci && npm run dev
+            - name: Install dependecies and start tests
               working-directory: ./test-suite
               run: npm ci
             - name: Install Playwright Browsers
