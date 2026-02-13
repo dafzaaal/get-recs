@@ -20,12 +20,10 @@ jobs:
               run: |
                 npm ci
                 npm run dev &
-            - name: Install Playwright package-lock.json and run tests
+            - name: Install dependencies, Playwright browsers and run tests
               working-directory: ./test-suite
-              run: npm ci
-            - name: Install Playwright Browsers
-              working-directory: ./backend
               run: |
+                npm ci
                 npx playwright install --with-deps
                 npx playwright test
             - name: Upload Playwright Test Report
