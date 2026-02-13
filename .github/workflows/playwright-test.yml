@@ -1,5 +1,5 @@
 name: Automated UI Playwright Tests
-on: [ push ]
+on: workflow_dispatch
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -10,12 +10,16 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: lts/*
-            - name: Run frontend server
+            - name: Install frontend dependencies
               working-directory: ./frontend
-              run: npm ci && npm run dev
-            - name: Run backend server
+              run: |
+                npm ci
+                npm run dev
+            - name: Navigate to backend folder and download dependencies and run Hono backend
               working-directory: ./backend
-              run: npm ci && npm run dev
+              run: |
+                npm ci
+                npm run dev
             - name: Install dependecies and start tests
               working-directory: ./test-suite
               run: npm ci
