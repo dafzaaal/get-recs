@@ -10,7 +10,8 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: lts/*
-            - name: Install dependencies and run server
+            - name: Install dependencies for front end and run server
+              working-directory: ./frontend
               run: |
                 npm ci
                 npm run dev &
