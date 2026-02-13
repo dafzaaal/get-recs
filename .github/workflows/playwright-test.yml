@@ -1,0 +1,17 @@
+name: Automated UI Playwright Tests
+on: [ push ]
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+            - name: Setup node environment
+              uses: action/setup-node@v4
+              with:
+                node-version: 16
+            - name: Install dependecies
+              working-directory: ./test-suite
+              run: npm ci
+            - name: Run playwright tests
+              run: npx playwright test
