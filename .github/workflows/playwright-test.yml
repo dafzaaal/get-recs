@@ -10,24 +10,23 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: lts/*
-            - name: Install frontend dependencies
+            - name: Install frontend dependencies and run frontend server
               working-directory: ./frontend
               run: |
                 npm ci
-                npm run build
+                npm run dev &
             - name: Navigate to backend folder and download dependencies and run Hono backend
               working-directory: ./backend
               run: |
                 npm ci
-                npm run dev
-            - name: Install dependecies and start tests
+                npm run dev &
+            - name: Install Playwright package-lock.json and run tests
               working-directory: ./test-suite
               run: npm ci
             - name: Install Playwright Browsers
-              run: npx playwright install --with-deps
-            - name: Run playwright tests
-              working-directory: ./test-suite
-              run: npx playwright test
+              run: |
+                npx playwright install --with-deps
+                npx playwright test
             - name: Upload Playwright Test Report
               uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
