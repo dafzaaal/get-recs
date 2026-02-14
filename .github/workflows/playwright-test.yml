@@ -1,5 +1,5 @@
 name: Automated UI Playwright Tests
-on: [ push ]
+on: [ workflow_dispatch, push ]
 env:
     youtube_api_key: ${{ secrets.YOUTUBE_API_KEY }}
     gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
