@@ -17,12 +17,12 @@ jobs:
               uses: actions/cache@v4
               with:
                 path: |
-                  frontend/node-modules
-                  backend/node-modules
-                  test-suite/node-modules
-                key: ${{ runner.os }}--node-${{ hashFiles('**/package-lock.json') }}
+                  frontend/node_modules
+                  backend/node_modules
+                  test-suite/node_modules
+                key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
                 restore-keys: |
-                    ${{ runner.os }}-npm
+                    ${{ runner.os }}-node
             - name: Install dependencies for front end and run server
               working-directory: ./frontend
               run: |
