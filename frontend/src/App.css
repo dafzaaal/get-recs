@@ -12,7 +12,6 @@
 #root {
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -72,4 +71,52 @@
 
 #my-header:hover {
   color: grey;
+}
+
+@media (500px <= width <= 900px) {
+  #text-area {
+    width: 100vh;
+  }
+  #text-area textarea {
+    width: 85%;
+  }
+  #my-header {
+    font-size: 2.75rem;
+    padding-top: 1rem;
+  }
+  #img-area {
+    width: 0;
+  }
+  #app-explanation {
+    font: small;
+    width: 75%;
+  }
+  #ai-vids-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #gemini_output div {
+    width: auto;
+    height: auto;
+  }
+  #ai-vids-container h1 {
+    font-size: 1.75rem;
+    overflow-y: auto;
+  }
+  #ai-response {
+    width: 85%;
+    height: ;
+    height: fit-content;
+    overflow-y: auto;
+  }
+  #video-containers div div {
+    width: 100%;
+    font-size: 0.7rem;
+  }
+  #video-containers div div img {
+    height: 115px;
+    width: 175px;
+  }
 }

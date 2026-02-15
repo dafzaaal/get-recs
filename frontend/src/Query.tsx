@@ -76,7 +76,7 @@ export default function GetData() {
 
 
     return (
-        <div className="flex flex-row w-screen h-screen">
+        <div id='ai-vids-container' className="flex flex-row w-screen h-screen">
             <div id="gemini_output" className="flex h-screen w-screen text-left bg-black font-bold text-xl p-10">
                 <div className='w-1/1'>
                     <h1 className='pb-5'>Gemini Says...</h1>

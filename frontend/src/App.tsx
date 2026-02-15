@@ -47,7 +47,7 @@ export function Landing() {
             textAlign="center"
             onLetterAnimationComplete={handleAnimationComplete}
           />
-            <p className='text-black w-2/3 text-center text-xl font-consolas'>
+            <p id='app-explanation' className='text-black w-2/3 text-center text-xl font-consolas'>
               Welcome to <b>Get Recs!</b> This is a dummy application leveraging the YouTube API and Gemini to take a user 
               prompt and generate an AI response as well as reccommend a couple videos regarding the topic for the user.
               The goal of this application is to help me understand hosting a web-application on an nginx server as

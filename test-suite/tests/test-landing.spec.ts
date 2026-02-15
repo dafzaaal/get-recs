@@ -65,5 +65,27 @@ test.describe('API Calls Made Successfully Given a non-empty Prompt', () => {
         expect(youTubeAPICalled).toBe(true);
         expect(geminiAPICalled).toBe(true);
 
-    })
+    });
+
+    test('Verify JSON Data against Schema', async ({ page }) => {
+        type GeminiAPIData = {
+            response: string
+        }
+        type YouTubeAPIData = {
+            title: string,
+            desc: string, 
+            videoId: string, 
+            thumbnail: string,
+            channelName: string,
+        }
+        await page.goto('http://localhost:5173');
+        await page.getByPlaceholder('Type away...').fill('How to scale an API?');
+        page.on('request', request => {
+            if(request.url().includes('/youtube')) {
+                const response = request;
+                console.log(response);
+                
+            };
+        })
+    });
 })
