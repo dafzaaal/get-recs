@@ -13,7 +13,7 @@ app.use('/youtube', cors());
 
 dotenv.config()
 
-function parseData(data) {
+function parseData(data?:any) {
     let res = []
     for(let i = 0; i < data.length; i++) {
         const item = data[i];
@@ -77,9 +77,9 @@ app.post('/gemini',  async (c) => {
 
 
 app.post('/youtube', async (c) => {
-  console.log("Sending data to YouTube...")
-  const body = await c.req.json()
-  const searchReq: string = body['search']
+  console.log("Sending data to YouTube...");
+  const body = await c.req.json();
+  const searchReq: string = body['search'];
   try {
     const data = await queryYouTube(searchReq)
     const res = parseData(data);

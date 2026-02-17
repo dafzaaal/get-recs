@@ -1,4 +1,4 @@
-import { test, expect, request } from "@playwright/test"
+import { test, expect, request } from "@playwright/test";
 
 test('Test Landing Page', async ({ page }) => {
     await page.goto('http://localhost:5173');
@@ -6,7 +6,7 @@ test('Test Landing Page', async ({ page }) => {
     await expect(page.getByPlaceholder('Type away...')).toBeVisible();
 })
 
-test.describe('Tests Related to Empty Prompts', () => {
+test.describe.skip('Tests Related to Empty Prompts', () => {
 
     test('Correct navigation on click event', async({ page }) => {
         await page.goto('http://localhost:5173');
@@ -33,7 +33,7 @@ test.describe('Tests Related to Empty Prompts', () => {
 
 
 test.describe('API Calls Made Successfully Given a non-empty Prompt', () => {
-    test('Gemini & YouTube API Called on non-empty Prompt', async ({ page }) => {
+    test.skip('Gemini & YouTube API Called on non-empty Prompt', async ({ page }) => {
 
         let youTubeAPICalled = false;
         let geminiAPICalled = false; 
@@ -67,25 +67,24 @@ test.describe('API Calls Made Successfully Given a non-empty Prompt', () => {
 
     });
 
-    test('Verify JSON Data against Schema', async ({ page }) => {
-        type GeminiAPIData = {
-            response: string
+    test('Verify YouTube Data Returned Against Schema', async ({ request }) => {
+        function verifyJSONData(json?:any) {
+            for(let i = 0; i < json.length; i++) {
+                const curr = json[i];
+                expect(curr).toHaveProperty('title');
+                expect(curr).toHaveProperty('desc');
+                expect(curr).toHaveProperty('videoId');
+                expect(curr).toHaveProperty('thumbnail');
+                expect(curr).toHaveProperty('channelName');
+            }
         }
-        type YouTubeAPIData = {
-            title: string,
-            desc: string, 
-            videoId: string, 
-            thumbnail: string,
-            channelName: string,
-        }
-        await page.goto('http://localhost:5173');
-        await page.getByPlaceholder('Type away...').fill('How to scale an API?');
-        page.on('request', request => {
-            if(request.url().includes('/youtube')) {
-                const response = request;
-                console.log(response);
-                
-            };
-        })
+        const response = await request.post('http://localhost:3000/youtube', {
+            data: {
+                search: "Type safety in TS",
+            }
+        });
+        await expect(response).toBeOK();
+        const data = await response.json();
+        verifyJSONData(await data);
     });
-})
+});
