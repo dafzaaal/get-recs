@@ -6,7 +6,7 @@ test('Test Landing Page', async ({ page }) => {
     await expect(page.getByPlaceholder('Type away...')).toBeVisible();
 })
 
-test.describe.skip('Tests Related to Empty Prompts', () => {
+test.describe('Tests Related to Empty Prompts', () => {
 
     test('Correct navigation on click event', async({ page }) => {
         await page.goto('http://localhost:5173');
@@ -33,7 +33,7 @@ test.describe.skip('Tests Related to Empty Prompts', () => {
 
 
 test.describe('API Calls Made Successfully Given a non-empty Prompt', () => {
-    test.skip('Gemini & YouTube API Called on non-empty Prompt', async ({ page }) => {
+    test('Gemini & YouTube API Called on non-empty Prompt', async ({ page }) => {
 
         let youTubeAPICalled = false;
         let geminiAPICalled = false; 
